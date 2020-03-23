@@ -2,7 +2,7 @@
   <div class="home">
     <div class="header">
       <div class="title">Third Music</div>
-      <img src="@/assets/charging.png" alt="logo">
+      <img src="@/assets/logo.png" alt="logo">
     </div>
     <div :class="{
       content: true,
