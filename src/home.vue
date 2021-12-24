@@ -262,8 +262,8 @@
 </style>
 
 <script>
-import filters from '@/filters';
 import aplayer from 'vue-aplayer';
+import filters from '@/filters';
 
 aplayer.disableVersionBadge = true;
 
