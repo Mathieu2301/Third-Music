@@ -305,7 +305,7 @@ export default {
     },
 
     download(music) {
-      window.location.replace(`https://third-music.usp-3.fr/api/?download=${music}&HD`);
+      window.location.replace(`https://third-music.apis.colmon.fr/?download=${music}&HD`);
       this.musics.forEach((m, i) => {
         if (m.id === music) this.musics[i].downloads += 1;
       });
@@ -359,7 +359,7 @@ export default {
       return this.music ? {
         title: this.music.title,
         artist: 'Third',
-        src: `https://third-music.usp-3.fr/files/${this.music.id}.mp3`,
+        src: `https://third-music.apis.colmon.fr/files/${this.music.id}.mp3`,
         pic: 'false',
         theme: '#0b720b',
       } : {

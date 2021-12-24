@@ -5,18 +5,9 @@ import app from './App.vue';
 import home from './home.vue';
 import api from './api';
 
-if (window.location.hostname !== 'localhost' && window.location.protocol !== 'https:') {
-  window.location.replace(`
-    https:${window.location.href.substring(window.location.protocol.length)}
-  `);
-}
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js');
-}
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
 
 Vue.config.productionTip = false;
-
 Vue.prototype.api = api;
 
 Vue.use(VueScrollReveal, {
@@ -24,6 +15,7 @@ Vue.use(VueScrollReveal, {
   scale: 0,
   distance: '10px',
 });
+
 Vue.use(VueRouter);
 
 new Vue({

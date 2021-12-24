@@ -1,4 +1,4 @@
-const api = 'https://third-music.usp-3.fr/api/';
+const api = 'third-music.apis.colmon.fr';
 
 function rq(type) {
   return function request(data = {}, callback) {
@@ -8,7 +8,7 @@ function rq(type) {
     }
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', `${api}?${type}`, true);
+    xhr.open('POST', `https://${api}/?${type}`, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = () => {
       if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -16,7 +16,7 @@ function rq(type) {
         try {
           response = JSON.parse(response);
         } catch (e) {
-          callback({ error: true, message: "Can't parse server response" });
+          callback({ error: true, message: 'Can\'t parse server response' });
           return;
         }
         callback(response);
