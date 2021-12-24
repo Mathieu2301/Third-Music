@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueScrollReveal from 'vue-scroll-reveal';
-import app from './app.vue';
+import app from './App.vue';
 import home from './home.vue';
 import api from './api';
 
