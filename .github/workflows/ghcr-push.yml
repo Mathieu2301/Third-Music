@@ -23,6 +23,6 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        context: ./backend
+        context: "{{defaultContext}}:/backend"
         tags: ghcr.io/mathieu2301/third-music-api:latest
         platforms: linux/amd64,linux/arm64
