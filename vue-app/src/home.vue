@@ -60,9 +60,9 @@
                 viewBox="0 0 100 100"
                 :class="{
                   icon: true,
-                  red: music.loved
+                  red: music.liked
                 }"
-                @click="love(music.id)"
+                @click="like(music.id)"
               >
                 <path d="M91.58,14.9A28.71,28.71,0,0,0,51,14.9l-1,1-1-1A28.68,28.68,0,0,0,8.39,
                 55.46l1,1L35.24,82.32h0l6,6,0.1,0.11L43.9,91a8.63,8.63,0,0,0,12.17,
@@ -264,6 +264,7 @@
 <script>
 import aplayer from 'vue-aplayer';
 import filters from '@/filters';
+import api, { host } from '@/api';
 
 aplayer.disableVersionBadge = true;
 
@@ -294,18 +295,18 @@ export default {
       }
     },
 
-    love(music) {
+    like(music) {
       this.musics.forEach((m, i) => {
-        if (m.id === music && !this.musics[i].loved) {
-          this.api.LOVE_MUSIC({ music });
+        if (m.id === music && !this.musics[i].liked) {
+          api.LIKE_MUSIC({ music });
           this.musics[i].likes += 1;
-          this.musics[i].loved = true;
+          this.musics[i].liked = true;
         }
       });
     },
 
     download(music) {
-      window.location.replace(`https://third-music.apis.colmon.fr/?download=${music}&HD`);
+      window.location.replace(`${host}/?download=${music}&HD`);
       this.musics.forEach((m, i) => {
         if (m.id === music) this.musics[i].downloads += 1;
       });
@@ -321,7 +322,7 @@ export default {
   },
 
   mounted() {
-    this.api.GET_MUSICS((fetchedMusics) => {
+    api.GET_MUSICS((fetchedMusics) => {
       if (!fetchedMusics.error) {
         this.musics = fetchedMusics;
         if (this.selected) this.$children[0].thenPlay();
@@ -359,7 +360,7 @@ export default {
       return this.music ? {
         title: this.music.title,
         artist: 'Third',
-        src: `https://third-music.apis.colmon.fr/files/${this.music.id}.mp3`,
+        src: `${host}/files/${this.music.id}.mp3`,
         pic: 'false',
         theme: '#0b720b',
       } : {

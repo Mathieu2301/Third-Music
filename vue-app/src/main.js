@@ -3,12 +3,10 @@ import VueRouter from 'vue-router';
 import VueScrollReveal from 'vue-scroll-reveal';
 import app from './App.vue';
 import home from './home.vue';
-import api from './api';
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
 
 Vue.config.productionTip = false;
-Vue.prototype.api = api;
 
 Vue.use(VueScrollReveal, {
   duration: 500,

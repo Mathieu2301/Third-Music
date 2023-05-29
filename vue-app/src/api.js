@@ -1,4 +1,7 @@
-const api = 'third-music.apis.colmon.fr';
+export const host = (process.env.NODE_ENV === 'production'
+  ? 'https://third-music.apis.colmon.fr'
+  : 'http://localhost:3000'
+);
 
 function rq(type) {
   return function request(data = {}, callback) {
@@ -8,7 +11,7 @@ function rq(type) {
     }
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', `https://${api}/?${type}`, true);
+    xhr.open('POST', `${host}/?${type}`, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = () => {
       if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -28,5 +31,5 @@ function rq(type) {
 
 export default {
   GET_MUSICS: rq('getMusics'),
-  LOVE_MUSIC: rq('addLove'),
+  LIKE_MUSIC: rq('addLike'),
 };
