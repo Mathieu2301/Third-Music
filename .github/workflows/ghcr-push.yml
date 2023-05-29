@@ -7,7 +7,6 @@ jobs:
   publish-to-ghcr:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
       with:
@@ -24,5 +23,6 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
+        context: backend
         tags: ghcr.io/mathieu2301/third-music-api:latest
         platforms: linux/amd64,linux/arm64
