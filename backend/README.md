@@ -43,8 +43,8 @@ API du site Third Music.
     ```env
     MYSQL_HOST=dev.mysql
     MYSQL_USER=third_music
-    MYSQL_PASSWORD=third_music
-    MYSQL_DATABASE=third_music
+    MYSQL_PASS=third_music
+    MYSQL_DB=third_music
     ```
 
 4. Lancer le script `dev.sh`:
@@ -65,8 +65,8 @@ services:
     environment:
       - MYSQL_HOST=${MYSQL_HOST}
       - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_PASS=${MYSQL_PASS}
+      - MYSQL_DB=${MYSQL_DB}
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.third-music-api.rule=Host(`third-music.apis.colmon.fr`)'
