@@ -69,7 +69,7 @@ services:
       - MYSQL_DB=${MYSQL_DB}
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.third-music-api.rule=Host(`third-music.apis.colmon.fr`)'
+      - 'traefik.http.routers.third-music-api.rule=Host(`${SERVER_URL}`)'
       - 'traefik.http.routers.third-music-api.entrypoints=https'
     volumes:
       - files:/var/www/html/files
