@@ -44,8 +44,11 @@ if (isset($_GET['download'])) {
   flush();
 
   $file = fopen($file, 'r');
-  print fread($file, $size);
-  flush();
+  while (!feof($file)) {
+    // Use a buffer of 10MB
+    print fread($file, 10485760);
+    flush();
+  }
   fclose($file);
   exit;
 }
