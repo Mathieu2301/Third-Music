@@ -40,7 +40,7 @@ if (isset($_GET['download'])) {
   header('Cache-control: max-age=3600');
   header('Content-Type: application/octet-stream');
   header("Content-Length: $size");
-  header("Content-Disposition: filename=$basename");
+  header("Content-Disposition: attachment; filename=$basename");
   flush();
 
   $file = fopen($file, 'r');
