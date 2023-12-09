@@ -27,22 +27,26 @@ function rq($name, $inputs = null) {
 
 if (isset($_GET['download'])) {
   $filename = $_GET['download'];
-  $format = 'mp3';
-  if (isset($_GET['HD'])) $format = 'wav';
+  $format = (isset($_GET['HD']) ? 'wav' : 'mp3');
 
   $file = "./files/$filename.$format";
 
   $rq = $pdo->prepare('INSERT INTO downloads (music, ip) VALUES (?, ?)');
   $rq->execute([$filename, $_SERVER['REMOTE_ADDR']]);
 
-  header('Content-Description: File Transfer');
+  $size = filesize($file);
+  $basename = basename($file);
+
+  header('Cache-control: max-age=3600');
   header('Content-Type: application/octet-stream');
-  header('Content-Disposition: attachment; filename="' . basename($file) . '"');
-  header('Expires: 0');
-  header('Cache-Control: must-revalidate');
-  header('Pragma: public');
-  header('Content-Length: ' . filesize($file));
-  readfile($file);
+  header("Content-Length: $size");
+  header("Content-Disposition: filename=$basename");
+  flush();
+
+  $file = fopen($file, 'r');
+  print fread($file, $size);
+  flush();
+  fclose($file);
   exit;
 }
 
